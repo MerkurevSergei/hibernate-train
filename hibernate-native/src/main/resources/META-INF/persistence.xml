@@ -14,7 +14,7 @@
             Persistence unit for the JPA
         </description>
 
-        <class>ru.merkurev.hibernate.training.EntityAnnotated</class>
+        <class>ru.merkurev.hibernate.training.natives.EntityAnnotated</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />

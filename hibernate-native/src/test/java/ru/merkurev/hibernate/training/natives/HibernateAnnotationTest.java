@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training;
+package ru.merkurev.hibernate.training.natives;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

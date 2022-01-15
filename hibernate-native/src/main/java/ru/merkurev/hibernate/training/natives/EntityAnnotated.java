@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training;
+package ru.merkurev.hibernate.training.natives;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

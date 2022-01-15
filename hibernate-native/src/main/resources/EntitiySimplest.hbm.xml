@@ -12,7 +12,7 @@
 
 <hibernate-mapping package="ru.merkurev.hibernate.training">
 
-    <class name="EntitySimplest" table="ENTITIES">
+    <class name="ru.merkurev.hibernate.training.natives.EntitySimplest" table="ENTITIES">
         <id name="id" column="ID">
             <generator class="increment"/>
         </id>

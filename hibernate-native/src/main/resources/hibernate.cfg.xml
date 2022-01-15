@@ -23,6 +23,6 @@
         <property name="format_sql">true</property>
         
         <mapping resource="EntitiySimplest.hbm.xml"/>
-        <!-- <mapping class="ru.merkurev.hibernate.training.EntitySimplest"/>-->
+        <!-- <mapping class="EntitySimplest"/>-->
     </session-factory>
 </hibernate-configuration>
