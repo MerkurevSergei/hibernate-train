@@ -1,9 +1,3 @@
-create table person (
-    id integer not null,
-    firstName varchar(200) not null,
-    lastName varchar(200) not null,
-    birthDate timestamp,
-    primary key(id)
-);
-
 insert into person (id, firstName, lastName, birthDate)values (1, 'Petrio', 'Nikolo', sysdate());
+insert into person (id, firstName, lastName, birthDate)values (2, 'Maria', 'Ivanova', sysdate());
+insert into person (id, firstName, lastName, birthDate)values (3, 'Vasian', 'Petrov', sysdate());
