@@ -47,7 +47,8 @@ class PetRepositoryTest {
     void saveAsUpdate() {
         Pet pet = petRepository.findById(2L);
         pet.setName("ChangedName");
-        Pet updatedPet = petRepository.save(pet);
+        petRepository.save(pet);
+        Pet updatedPet = petRepository.findById(2L);
         assertEquals(pet.getId(), updatedPet.getId());
         assertEquals(pet.getName(), updatedPet.getName());
     }
