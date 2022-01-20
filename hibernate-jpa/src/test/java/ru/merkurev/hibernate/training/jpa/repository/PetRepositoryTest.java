@@ -52,4 +52,13 @@ class PetRepositoryTest {
         assertEquals(pet.getId(), updatedPet.getId());
         assertEquals(pet.getName(), updatedPet.getName());
     }
+
+    @Test
+    @DirtiesContext
+    void saveAndTrackingInTransaction() {
+        Pet pet = new Pet("Cat");
+        Pet savedPet = petRepository.saveAndChange(pet, "Dog");
+        assertEquals(pet.getId(), savedPet.getId());
+        assertEquals("Dog", savedPet.getName());
+    }
 }

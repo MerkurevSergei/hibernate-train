@@ -32,4 +32,14 @@ public class PetRepository {
         }
         return pet;
     }
+
+    public Pet saveAndChange(Pet pet, String newName) {
+        if (pet.getId() == null) {
+            em.persist(pet);
+        } else {
+            throw new RuntimeException("Unsupported operation with null Pet");
+        }
+        pet.setName(newName);
+        return pet;
+    }
 }
