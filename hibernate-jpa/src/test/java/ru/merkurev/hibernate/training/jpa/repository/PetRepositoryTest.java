@@ -55,10 +55,65 @@ class PetRepositoryTest {
 
     @Test
     @DirtiesContext
-    void saveAndTrackingInTransaction() {
+    void saveAndChangeTrackingInTransaction() {
         Pet pet = new Pet("Cat");
         Pet savedPet = petRepository.saveAndChange(pet, "Dog");
         assertEquals(pet.getId(), savedPet.getId());
         assertEquals("Dog", savedPet.getName());
+    }
+
+    @Test
+    @DirtiesContext
+    void saveDetachAndChange() {
+        Pet pet = new Pet("Cat");
+        Pet savedPet = petRepository.saveDetachAndChange(pet, "Dog");
+        assertEquals(pet.getId(), savedPet.getId());
+        assertEquals("Cat", savedPet.getName());
+    }
+
+    @Test
+    @DirtiesContext
+    void saveClearAndChange() {
+        Pet pet = new Pet("Cat");
+        Pet savedPet = petRepository.saveClearAndChange(pet, "Dog");
+        assertEquals(pet.getId(), savedPet.getId());
+        assertEquals("Cat", savedPet.getName());
+    }
+
+
+    @Test
+    @DirtiesContext
+    void saveFlushChangeDetach() {
+        Pet pet = new Pet("Cat");
+        Pet savedPet = petRepository.saveFlushChangeDetach(pet, "Dog");
+        assertEquals(pet.getId(), savedPet.getId());
+        assertEquals("Cat", savedPet.getName());
+    }
+
+    @Test
+    @DirtiesContext
+    void saveFlushChangeClear() {
+        Pet pet = new Pet("Cat");
+        Pet savedPet = petRepository.saveFlushChangeClear(pet, "Dog");
+        assertEquals(pet.getId(), savedPet.getId());
+        assertEquals("Cat", savedPet.getName());
+    }
+
+    @Test
+    @DirtiesContext
+    void saveFlushChangeRefresh() {
+        Pet pet = new Pet("Cat");
+        Pet savedPet = petRepository.saveFlushChangeRefresh(pet, "Dog");
+        assertEquals(pet.getId(), savedPet.getId());
+        assertEquals("Cat", savedPet.getName());
+    }
+
+    @Test
+    @DirtiesContext
+    void saveDetachRefreshChange() {
+        Pet pet = new Pet("Cat");
+        Pet savedPet = petRepository.saveDetachRefreshChange(pet, "Dog");
+        assertEquals(pet.getId(), savedPet.getId());
+        assertEquals("Cat", savedPet.getName());
     }
 }

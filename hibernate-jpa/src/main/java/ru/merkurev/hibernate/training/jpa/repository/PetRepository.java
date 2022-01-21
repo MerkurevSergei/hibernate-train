@@ -6,7 +6,6 @@ import ru.merkurev.hibernate.training.jpa.entity.Pet;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Repository
 @Transactional
@@ -30,7 +29,7 @@ public class PetRepository {
         } else {
             em.merge(pet);
         }
-        return pet;
+        return findById(pet.getId());
     }
 
     public Pet saveAndChange(Pet pet, String newName) {
@@ -40,6 +39,75 @@ public class PetRepository {
             throw new RuntimeException("Unsupported operation with null Pet");
         }
         pet.setName(newName);
-        return pet;
+        return findById(pet.getId());
+    }
+
+    public Pet saveDetachAndChange(Pet pet, String newName) {
+        if (pet.getId() == null) {
+            em.persist(pet);
+        } else {
+            throw new RuntimeException("Unsupported operation with null Pet");
+        }
+        em.detach(pet);
+        pet.setName(newName);
+        return findById(pet.getId());
+    }
+
+    public Pet saveClearAndChange(Pet pet, String newName) {
+        if (pet.getId() == null) {
+            em.persist(pet);
+        } else {
+            throw new RuntimeException("Unsupported operation with null Pet");
+        }
+        em.clear();
+        pet.setName(newName);
+        return findById(pet.getId());
+    }
+
+    public Pet saveFlushChangeDetach(Pet pet, String newName) {
+        if (pet.getId() == null) {
+            em.persist(pet);
+        } else {
+            throw new RuntimeException("Unsupported operation with null Pet");
+        }
+        em.flush();
+        pet.setName(newName);
+        em.detach(pet);
+        return findById(pet.getId());
+    }
+
+    public Pet saveFlushChangeClear(Pet pet, String newName) {
+        if (pet.getId() == null) {
+            em.persist(pet);
+        } else {
+            throw new RuntimeException("Unsupported operation with null Pet");
+        }
+        em.flush();
+        pet.setName(newName);
+        em.clear();
+        return findById(pet.getId());
+    }
+
+    public Pet saveDetachRefreshChange(Pet pet, String newName) {
+        if (pet.getId() == null) {
+            em.persist(pet);
+        } else {
+            throw new RuntimeException("Unsupported operation with null Pet");
+        }
+        pet.setName(newName);
+        em.refresh(pet);
+        return findById(pet.getId());
+    }
+
+    public Pet saveFlushChangeRefresh(Pet pet, String newName) {
+        if (pet.getId() == null) {
+            em.persist(pet);
+        } else {
+            throw new RuntimeException("Unsupported operation with null Pet");
+        }
+        em.flush();
+        pet.setName(newName);
+        em.refresh(pet);
+        return findById(pet.getId());
     }
 }
