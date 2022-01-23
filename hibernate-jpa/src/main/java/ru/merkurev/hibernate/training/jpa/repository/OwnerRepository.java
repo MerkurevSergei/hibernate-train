@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.merkurev.hibernate.training.jpa.entity.Owner;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -33,8 +34,14 @@ public class OwnerRepository {
         return em.createNamedQuery("get_all_owners", Owner.class).getResultList();
     }
 
-    public Owner getOwnerById(Long id) {
+    public Owner getOwnerAsNamedQuery(Long id) {
         TypedQuery<Owner> ownerQuery = em.createNamedQuery("get_owner_by_id", Owner.class);
         return ownerQuery.setParameter("id", id).getSingleResult();
+    }
+
+    public Owner getOwnerAsNativeQuery(Long id) {
+        return (Owner) em.createNativeQuery("select * from owner where id = :id", Owner.class)
+                         .setParameter("id", id)
+                         .getSingleResult();
     }
 }
