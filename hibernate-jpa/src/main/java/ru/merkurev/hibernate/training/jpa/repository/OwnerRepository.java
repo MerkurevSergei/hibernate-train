@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 import ru.merkurev.hibernate.training.jpa.entity.Owner;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -25,5 +27,14 @@ public class OwnerRepository {
             em.merge(owner);
         }
         return findById(owner.getId());
+    }
+
+    public List<Owner> getOwnersAsNamedQuery() {
+        return em.createNamedQuery("get_all_owners", Owner.class).getResultList();
+    }
+
+    public Owner getOwnerById(Long id) {
+        TypedQuery<Owner> ownerQuery = em.createNamedQuery("get_owner_by_id", Owner.class);
+        return ownerQuery.setParameter("id", id).getSingleResult();
     }
 }

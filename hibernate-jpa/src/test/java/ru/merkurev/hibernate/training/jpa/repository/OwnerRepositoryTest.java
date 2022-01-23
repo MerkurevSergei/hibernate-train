@@ -42,5 +42,4 @@ class OwnerRepositoryTest {
         assertEquals(savedOwner.getCreated(), updatedOwner.getCreated());
         assertNotEquals(savedOwner.getUpdated(), updatedOwner.getUpdated());
     }
-
 }
