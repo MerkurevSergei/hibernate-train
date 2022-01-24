@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training.jpa.relations.relations.entity;
+package ru.merkurev.hibernate.training.jpa.relations.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,28 +19,24 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Review {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(name = "rating", nullable = false)
-    private String rating;
-
-    public Review(String description, String rating) {
-        this.description = description;
-        this.rating = rating;
+    public Student(String name) {
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Review review = (Review) o;
-        return id != null && Objects.equals(id, review.id);
+        Student student = (Student) o;
+        return id != null && Objects.equals(id, student.id);
     }
 
     @Override

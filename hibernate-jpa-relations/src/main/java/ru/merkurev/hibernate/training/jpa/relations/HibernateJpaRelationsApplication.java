@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training.jpa.relations.relations;
+package ru.merkurev.hibernate.training.jpa.relations;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

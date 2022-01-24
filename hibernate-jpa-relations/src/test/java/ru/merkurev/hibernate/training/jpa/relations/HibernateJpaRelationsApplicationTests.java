@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training.jpa.relations.relations;
+package ru.merkurev.hibernate.training.jpa.relations;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

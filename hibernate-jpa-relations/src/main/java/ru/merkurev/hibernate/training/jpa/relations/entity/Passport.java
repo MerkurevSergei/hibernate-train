@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training.jpa.relations.relations.entity;
+package ru.merkurev.hibernate.training.jpa.relations.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;

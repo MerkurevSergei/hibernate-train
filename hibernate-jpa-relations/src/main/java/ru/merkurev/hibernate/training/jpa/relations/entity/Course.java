@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training.jpa.relations.relations.entity;
+package ru.merkurev.hibernate.training.jpa.relations.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -6,12 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -19,15 +22,24 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Student {
+public class Course {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    public Student(String name) {
+    @CreationTimestamp
+    @Column(name = "created")
+    private LocalDateTime created;
+
+    @UpdateTimestamp
+    @Column(name = "updated")
+    private LocalDateTime updated;
+
+    public Course(String name) {
         this.name = name;
     }
 
@@ -35,8 +47,8 @@ public class Student {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Student student = (Student) o;
-        return id != null && Objects.equals(id, student.id);
+        Course course = (Course) o;
+        return id != null && Objects.equals(id, course.id);
     }
 
     @Override

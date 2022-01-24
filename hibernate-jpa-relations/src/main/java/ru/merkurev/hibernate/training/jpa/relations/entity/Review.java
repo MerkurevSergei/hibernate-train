@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training.jpa.relations.relations.entity;
+package ru.merkurev.hibernate.training.jpa.relations.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -6,18 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -25,33 +19,28 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Course {
+public class Review {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "description", nullable = false)
+    private String description;
 
-    @CreationTimestamp
-    @Column(name = "created")
-    private LocalDateTime created;
+    @Column(name = "rating", nullable = false)
+    private String rating;
 
-    @UpdateTimestamp
-    @Column(name = "updated")
-    private LocalDateTime updated;
-
-    public Course(String name) {
-        this.name = name;
+    public Review(String description, String rating) {
+        this.description = description;
+        this.rating = rating;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Course course = (Course) o;
-        return id != null && Objects.equals(id, course.id);
+        Review review = (Review) o;
+        return id != null && Objects.equals(id, review.id);
     }
 
     @Override
