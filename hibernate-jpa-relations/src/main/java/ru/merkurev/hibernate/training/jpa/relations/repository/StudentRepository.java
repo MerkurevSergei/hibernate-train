@@ -16,4 +16,13 @@ public class StudentRepository {
     public Student findById(Long id) {
         return em.find(Student.class, id);
     }
+
+    public Student save(Student student) {
+        if (student.getId() == null) {
+            em.persist(student);
+        } else {
+            em.merge(student);
+        }
+        return findById(student.getId());
+    }
 }
