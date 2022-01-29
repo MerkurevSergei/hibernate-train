@@ -14,6 +14,9 @@ class OneToOneTests {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private PassportRepository passportRepository;
+
     @Test
     void findById() {
         Student student = studentRepository.findById(1L);
@@ -42,5 +45,17 @@ class OneToOneTests {
         assertNotNull(student);
         assertNotNull(student.getPassport());
         assertEquals("Another Number", student.getPassport().getNumber());
+    }
+
+    @Test
+    void getStudentWithPassportAndBackward() {
+        Student student = studentRepository.findById(1L);
+        Passport passport = passportRepository.findById(1L);
+
+        assertNotNull(student);
+        assertNotNull(student.getPassport());
+
+        assertNotNull(passport);
+        assertNotNull(passport.getStudent());
     }
 }

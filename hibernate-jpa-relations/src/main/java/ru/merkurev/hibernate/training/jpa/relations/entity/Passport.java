@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 @Entity
@@ -26,6 +27,9 @@ public class Passport {
 
     @Column(name = "number", nullable = false)
     private String number;
+
+    @OneToOne
+    private Student student;
 
     public Passport(String number) {
         this.number = number;

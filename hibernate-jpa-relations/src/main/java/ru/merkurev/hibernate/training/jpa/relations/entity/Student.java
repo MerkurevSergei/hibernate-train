@@ -13,6 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import java.util.Objects;
 
@@ -29,7 +32,11 @@ public class Student {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @OneToOne(
+        mappedBy = "student",
+        cascade = { CascadeType.ALL },
+        orphanRemoval = true
+    )
     private Passport passport;
 
     public Student(String name) {
