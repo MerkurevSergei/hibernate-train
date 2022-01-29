@@ -17,11 +17,22 @@ class ManyToOneToManyTests {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    private ReviewRepository reviewRepository;
+
     @Test
     void getCourse() {
         Course course = courseRepository.findById(1L);
         List<Review> reviews = course.getReviews(); // without LazyInitializationException because Extended scope
         assertNotNull(course);
         assertFalse(reviews.isEmpty());
+    }
+
+    @Test
+    void getReviewsNPlus1Problem() {
+        List<Review> reviews = reviewRepository.findAll();
+        for (Review review : reviews) {
+            assertNotNull(review.getDescription());
+        }
     }
 }
