@@ -13,10 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -34,10 +33,13 @@ public class Student {
 
     @OneToOne(
         mappedBy = "student",
-        cascade = { CascadeType.ALL },
+        cascade = {CascadeType.ALL},
         orphanRemoval = true
     )
     private Passport passport;
+
+    @ManyToMany
+    private List<Course> courses;
 
     public Student(String name) {
         this.name = name;

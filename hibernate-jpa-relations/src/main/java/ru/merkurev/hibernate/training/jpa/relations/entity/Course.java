@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,13 +35,17 @@ public class Course {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @CreationTimestamp
-    @Column(name = "created")
-    private LocalDateTime created;
-
     @OneToMany(mappedBy = "course")
     @ToString.Exclude
     private List<Review> reviews;
+
+    @ManyToMany(mappedBy = "courses")
+    @ToString.Exclude
+    private List<Student> students;
+
+    @CreationTimestamp
+    @Column(name = "created")
+    private LocalDateTime created;
 
     @UpdateTimestamp
     @Column(name = "updated")
