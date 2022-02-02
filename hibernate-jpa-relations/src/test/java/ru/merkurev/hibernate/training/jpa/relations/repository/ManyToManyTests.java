@@ -36,4 +36,17 @@ class ManyToManyTests {
         List<Course> courses = student.getCourses();
         assertFalse(courses.isEmpty());
     }
+
+    @Test
+    void saveStudentAndCourse() {
+        Student student = new Student("student");
+        Course course = new Course("course");
+        studentRepository.save(student);
+        courseRepository.save(course);
+
+        student.getCourses().add(course);
+        course.getStudents().add(student);
+        studentRepository.save(student); // владелец связи сохраняет отношение в JoinTable
+        courseRepository.save(course); // inverse side не сохраняет отношение в JoinTable
+    }
 }

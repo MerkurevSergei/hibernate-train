@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,7 +42,7 @@ public class Course {
 
     @ManyToMany(mappedBy = "courses")
     @ToString.Exclude
-    private List<Student> students;
+    private List<Student> students = new ArrayList<>();
 
     @CreationTimestamp
     @Column(name = "created")
