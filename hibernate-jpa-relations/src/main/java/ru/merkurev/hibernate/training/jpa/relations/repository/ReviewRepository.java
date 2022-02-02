@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewRepository {
 
-    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private final EntityManager em;
 
     public Review findById(Long id) {

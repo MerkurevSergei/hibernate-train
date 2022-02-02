@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.merkurev.hibernate.training.jpa.relations.entity.Course;
 import ru.merkurev.hibernate.training.jpa.relations.entity.Review;
+import ru.merkurev.hibernate.training.jpa.relations.entity.Student;
 
 import java.util.List;
 
@@ -17,23 +18,10 @@ class ManyToManyTests {
     @Autowired
     private CourseRepository courseRepository;
 
-    @Autowired
-    private ReviewRepository reviewRepository;
-
     @Test
-    void getCourse() {
+    void getCourseWithStudents() {
         Course course = courseRepository.findById(1L);
-        List<Review> reviews = course.getReviews(); // without LazyInitializationException because Extended scope
-        assertNotNull(course);
-        assertFalse(reviews.isEmpty());
-    }
-
-    @Test
-    void getReviewsNPlus1Problem() {
-        List<Review> reviews = reviewRepository.findAll();
-        for (Review review : reviews) {
-            // many queries to database
-            assertNotNull(review.getDescription());
-        }
+        List<Student> students = course.getStudents();
+        assertFalse(students.isEmpty());
     }
 }
