@@ -49,4 +49,14 @@ class ManyToManyTests {
         studentRepository.save(student); // владелец связи сохраняет отношение в JoinTable
         courseRepository.save(course); // inverse side не сохраняет отношение в JoinTable
     }
+
+    @Test
+    void saveStudentAndCourseSimplify() {
+        Student student = new Student("student");
+        Course course = new Course("course");
+        student.getCourses().add(course);
+        course.getStudents().add(student);
+        courseRepository.save(course);
+        studentRepository.save(student);
+    }
 }
