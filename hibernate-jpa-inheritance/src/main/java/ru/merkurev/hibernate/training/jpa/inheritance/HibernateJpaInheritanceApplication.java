@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.merkurev.hibernate.training.jpa.inheritance.joined.entity.FullTimeEmployeeJoined;
 import ru.merkurev.hibernate.training.jpa.inheritance.joined.entity.PartTimeEmployeeJoined;
 import ru.merkurev.hibernate.training.jpa.inheritance.joined.repository.EmployeeRepositoryJoined;
+import ru.merkurev.hibernate.training.jpa.inheritance.mapped.entity.FullTimeEmployeeMapped;
+import ru.merkurev.hibernate.training.jpa.inheritance.mapped.entity.PartTimeEmployeeMapped;
+import ru.merkurev.hibernate.training.jpa.inheritance.mapped.repository.EmployeeRepositoryMapped;
 import ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity.FullTimeEmployee;
 import ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity.PartTimeEmployee;
 import ru.merkurev.hibernate.training.jpa.inheritance.singletable.repository.EmployeeRepository;
@@ -26,6 +29,8 @@ public class HibernateJpaInheritanceApplication implements CommandLineRunner {
 
     private final EmployeeRepositoryJoined employeeRepositoryJoined;
 
+    private final EmployeeRepositoryMapped employeeRepositoryMapped;
+
     public static void main(String[] args) {
         SpringApplication.run(HibernateJpaInheritanceApplication.class, args);
     }
@@ -40,5 +45,8 @@ public class HibernateJpaInheritanceApplication implements CommandLineRunner {
 
         employeeRepositoryJoined.save(new FullTimeEmployeeJoined("First", new BigDecimal(1000)));
         employeeRepositoryJoined.save(new PartTimeEmployeeJoined("Second", new BigDecimal(20)));
+
+        employeeRepositoryMapped.save(new FullTimeEmployeeMapped("First", new BigDecimal(1000)));
+        employeeRepositoryMapped.save(new PartTimeEmployeeMapped("Second", new BigDecimal(20)));
     }
 }
