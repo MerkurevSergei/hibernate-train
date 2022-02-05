@@ -1,8 +1,8 @@
-package ru.merkurev.hibernate.training.jpa.inheritance.tableperclass.repository;
+package ru.merkurev.hibernate.training.jpa.inheritance.joined.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import ru.merkurev.hibernate.training.jpa.inheritance.tableperclass.entity.EmployeePerClass;
+import ru.merkurev.hibernate.training.jpa.inheritance.joined.entity.EmployeeJoined;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -11,20 +11,21 @@ import java.util.List;
 @Repository
 @Transactional
 @RequiredArgsConstructor
-public class EmployeeRepositoryPerClass {
+public class EmployeeRepositoryJoined {
 
     private final EntityManager em;
 
-    public EmployeePerClass obtainById(Long id) {
-        return em.find(EmployeePerClass.class, id);
+    public EmployeeJoined obtainById(Long id) {
+        return em.find(EmployeeJoined.class, id);
     }
 
-    public List<EmployeePerClass> obtainAll() {
-        return em.createQuery("select e from EmployeeJoined e", EmployeePerClass.class)
+    public List<EmployeeJoined> obtainAll() {
+        return em.createQuery("select e from EmployeeJoined e", EmployeeJoined.class)
                  .getResultList();
     }
 
-    public EmployeePerClass save(EmployeePerClass employee) {
+    public EmployeeJoined save(
+        EmployeeJoined employee) {
         if (employee.getId() == null) {
             em.persist(employee);
         } else {
