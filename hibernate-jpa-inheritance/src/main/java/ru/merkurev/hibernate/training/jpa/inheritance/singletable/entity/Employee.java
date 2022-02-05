@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training.jpa.inheritance.entity;
+package ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;

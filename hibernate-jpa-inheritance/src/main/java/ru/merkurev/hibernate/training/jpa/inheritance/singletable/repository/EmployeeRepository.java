@@ -1,8 +1,8 @@
-package ru.merkurev.hibernate.training.jpa.inheritance.repository;
+package ru.merkurev.hibernate.training.jpa.inheritance.singletable.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import ru.merkurev.hibernate.training.jpa.inheritance.entity.Employee;
+import ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity.Employee;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;

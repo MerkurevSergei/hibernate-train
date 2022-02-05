@@ -1,12 +1,12 @@
-package ru.merkurev.hibernate.training.jpa.inheritance.repository;
+package ru.merkurev.hibernate.training.jpa.inheritance.singletable.repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import ru.merkurev.hibernate.training.jpa.inheritance.entity.Employee;
-import ru.merkurev.hibernate.training.jpa.inheritance.entity.FullTimeEmployee;
-import ru.merkurev.hibernate.training.jpa.inheritance.entity.PartTimeEmployee;
+import ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity.Employee;
+import ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity.FullTimeEmployee;
+import ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity.PartTimeEmployee;
 
 import java.math.BigDecimal;
 import java.util.List;

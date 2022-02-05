@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.merkurev.hibernate.training.jpa.inheritance.entity.FullTimeEmployee;
-import ru.merkurev.hibernate.training.jpa.inheritance.entity.PartTimeEmployee;
-import ru.merkurev.hibernate.training.jpa.inheritance.repository.EmployeeRepository;
+import ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity.FullTimeEmployee;
+import ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity.PartTimeEmployee;
+import ru.merkurev.hibernate.training.jpa.inheritance.singletable.repository.EmployeeRepository;
 
 import java.math.BigDecimal;
 

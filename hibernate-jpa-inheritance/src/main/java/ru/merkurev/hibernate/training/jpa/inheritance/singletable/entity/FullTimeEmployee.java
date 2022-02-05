@@ -1,4 +1,4 @@
-package ru.merkurev.hibernate.training.jpa.inheritance.entity;
+package ru.merkurev.hibernate.training.jpa.inheritance.singletable.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -15,13 +15,13 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PartTimeEmployee extends Employee {
+public class FullTimeEmployee extends Employee {
 
     @Column
-    private BigDecimal rate;
+    private BigDecimal salary;
 
-    public PartTimeEmployee(String name, BigDecimal rate) {
+    public FullTimeEmployee(String name, BigDecimal salary) {
         super(name);
-        this.rate = rate;
+        this.salary = salary;
     }
 }
