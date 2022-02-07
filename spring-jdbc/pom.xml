@@ -14,7 +14,7 @@
 	<name>spring-jdbc</name>
 	<description>Hibernate Training. Spring JDBC to JPA</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

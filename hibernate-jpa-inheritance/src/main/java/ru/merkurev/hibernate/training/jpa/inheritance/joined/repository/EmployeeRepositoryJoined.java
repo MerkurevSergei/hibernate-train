@@ -20,7 +20,7 @@ public class EmployeeRepositoryJoined {
     }
 
     public List<EmployeeJoined> obtainAll() {
-        return em.createQuery("select e from EmployeeMapped e", EmployeeJoined.class)
+        return em.createQuery("select e from EmployeeJoined e", EmployeeJoined.class)
                  .getResultList();
     }
 

@@ -20,7 +20,7 @@ public class EmployeeRepositoryPerClass {
     }
 
     public List<EmployeePerClass> obtainAll() {
-        return em.createQuery("select e from EmployeeMapped e", EmployeePerClass.class)
+        return em.createQuery("select e from EmployeePerClass e", EmployeePerClass.class)
                  .getResultList();
     }
 
