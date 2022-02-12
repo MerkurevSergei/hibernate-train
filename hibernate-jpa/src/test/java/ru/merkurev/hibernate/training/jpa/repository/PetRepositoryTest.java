@@ -3,12 +3,14 @@ package ru.merkurev.hibernate.training.jpa.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.annotation.DirtiesContext;
 import ru.merkurev.hibernate.training.jpa.entity.Pet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 class PetRepositoryTest {
@@ -115,5 +117,22 @@ class PetRepositoryTest {
         Pet savedPet = petRepository.saveDetachRefreshChange(pet, "Dog");
         assertEquals(pet.getId(), savedPet.getId());
         assertEquals("Cat", savedPet.getName());
+    }
+    
+    @Test
+    @DirtiesContext
+    void saveDetachAndSaveFail() {
+        Pet pet = new Pet("Cat");
+        petRepository.save2(pet);
+        assertThrows(InvalidDataAccessApiUsageException.class, () -> petRepository.save2(pet));
+    }
+    
+    @Test
+    @DirtiesContext
+    void saveDetachAndSaveSuccess() {
+        Pet pet = new Pet("Cat");
+        petRepository.save2(pet);
+        pet.setId(null);
+        petRepository.save2(pet);
     }
 }

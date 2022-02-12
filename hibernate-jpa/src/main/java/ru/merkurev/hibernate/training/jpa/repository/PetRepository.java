@@ -32,6 +32,11 @@ public class PetRepository {
         return findById(pet.getId());
     }
 
+    public Pet save2(Pet pet) {
+        em.persist(pet);
+        return findById(pet.getId());
+    }
+    
     public Pet saveAndChange(Pet pet, String newName) {
         if (pet.getId() == null) {
             em.persist(pet);
