@@ -28,7 +28,7 @@ public class Review {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "rating", nullable = false)
+    @Column(name = "rating")
     private String rating;
 
     @ManyToOne

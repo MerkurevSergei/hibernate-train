@@ -13,6 +13,8 @@ insert into passport (id, number, student_id) values (3, 'Q696 987411', 1);
 insert into review (id, description, rating, course_id) values (1, 'Good course', '4', 3);
 insert into review (id, description, rating, course_id) values (2, 'Great course', '4.3', 1);
 insert into review (id, description, rating, course_id) values (3, 'Best course', '5', 1);
+insert into review (id, description, rating, course_id) values (4, 'Best course', null, 1);
+insert into review (id, description, rating, course_id) values (5, 'Best course', '', 1);
 
 insert into student_course (student_id, course_id) values (2, 1);
 insert into student_course (student_id, course_id) values (1, 3);

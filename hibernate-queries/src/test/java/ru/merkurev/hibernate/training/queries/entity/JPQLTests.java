@@ -8,8 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -48,11 +51,22 @@ class JPQLTests {
 
     @Test
     @Transactional
-    void selectCoursesByLikePattern() {
+    void selectStudentsByLikePattern() {
         TypedQuery<Student> query = 
             em.createQuery("select s from Student s where s.passport.number like '%23-4%'", Student.class);
         List<Student> resultList = query.getResultList();
         assertFalse(resultList.isEmpty());
         assertTrue(resultList.get(0).getPassport().getNumber().contains("23-4"));
+    }
+
+    @Test
+    @Transactional
+    void selectReviewsWithoutRating() {
+        TypedQuery<Review> query =
+            em.createQuery("select r from Review r where r.rating is null or trim(r.rating) = ''", Review.class);
+        List<Review> resultList = query.getResultList();
+        assertFalse(resultList.isEmpty());
+        String rating = resultList.get(0).getRating();
+        assertTrue(rating == null || Objects.equals("", rating.strip()));
     }
 }
