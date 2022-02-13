@@ -46,4 +46,13 @@ class JPQLTests {
         assertTrue(resultList.get(0).getStudents().size() < resultList.get(1).getStudents().size());
     }
 
+    @Test
+    @Transactional
+    void selectCoursesByLikePattern() {
+        TypedQuery<Student> query = 
+            em.createQuery("select s from Student s where s.passport.number like '%23-4%'", Student.class);
+        List<Student> resultList = query.getResultList();
+        assertFalse(resultList.isEmpty());
+        assertTrue(resultList.get(0).getPassport().getNumber().contains("23-4"));
+    }
 }
