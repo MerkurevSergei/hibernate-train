@@ -75,8 +75,30 @@ class JPQLTests {
 
     @Test
     @Transactional
-    void joinCourseWithStudent() {
+    void innerJoinCourseWithStudent() {
         TypedQuery<Object[]> query = em.createQuery("select s, c from Student s JOIN s.courses c", Object[].class);
+        List<Object[]> resultList = query.getResultList();
+        assertFalse(resultList.isEmpty());
+        Object[] result = resultList.get(0);
+        assertEquals(result[0].getClass(), Student.class);
+        assertEquals(result[1].getClass(), Course.class);
+    }
+
+    @Test
+    @Transactional
+    void leftJoinCourseWithStudent() {
+        TypedQuery<Object[]> query = em.createQuery("select s, c from Student s LEFT JOIN s.courses c", Object[].class);
+        List<Object[]> resultList = query.getResultList();
+        assertFalse(resultList.isEmpty());
+        Object[] result = resultList.get(0);
+        assertEquals(result[0].getClass(), Student.class);
+        assertEquals(result[1].getClass(), Course.class);
+    }
+
+    @Test
+    @Transactional
+    void crossJoinCourseWithStudent() {
+        TypedQuery<Object[]> query = em.createQuery("select s, c from Student s, Course c", Object[].class);
         List<Object[]> resultList = query.getResultList();
         assertFalse(resultList.isEmpty());
         Object[] result = resultList.get(0);
