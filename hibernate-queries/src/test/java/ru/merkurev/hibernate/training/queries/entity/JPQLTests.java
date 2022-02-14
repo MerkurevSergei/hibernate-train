@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -68,5 +71,16 @@ class JPQLTests {
         assertFalse(resultList.isEmpty());
         String rating = resultList.get(0).getRating();
         assertTrue(rating == null || Objects.equals("", rating.strip()));
+    }
+
+    @Test
+    @Transactional
+    void joinCourseWithStudent() {
+        TypedQuery<Object[]> query = em.createQuery("select s, c from Student s JOIN s.courses c", Object[].class);
+        List<Object[]> resultList = query.getResultList();
+        assertFalse(resultList.isEmpty());
+        Object[] result = resultList.get(0);
+        assertEquals(result[0].getClass(), Student.class);
+        assertEquals(result[1].getClass(), Course.class);
     }
 }
