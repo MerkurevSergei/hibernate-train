@@ -1,6 +1,6 @@
-insert into course (id, name, created, updated) values (1, 'Bobbic', current_timestamp(0), current_timestamp(0));
-insert into course (id, name, created, updated) values (2, 'Drugok', current_timestamp(0), current_timestamp(0));
-insert into course (id, name, created, updated) values (3, 'Murka', current_timestamp(0), current_timestamp(0));
+insert into course (id, name, created, updated) values (1, 'Hibernate course', current_timestamp(0), current_timestamp(0));
+insert into course (id, name, created, updated) values (2, 'Spring course', current_timestamp(0), current_timestamp(0));
+insert into course (id, name, created, updated) values (3, 'Any mega course', current_timestamp(0), current_timestamp(0));
 
 insert into student (id, name) values (1, 'Peter');
 insert into student (id, name) values (2, 'Vasia');
