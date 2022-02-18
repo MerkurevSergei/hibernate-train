@@ -50,7 +50,7 @@ class CriteriaQueriesTests {
     @Test
     @Transactional
     void criteriaLikeMega() {
-        // Select c from Course c
+        // Select c from Course c where c.name like "%mega%"
 
         // 1. Use Criteria Builder to create a Criteria Query returning the expected result object
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -64,6 +64,31 @@ class CriteriaQueriesTests {
 
         // 4. Add Predicates etc to Criteria Query
         cq.where(like100Steps);
+
+        // 5. Build the TypedQuery using the entity manager and criteria query
+        TypedQuery<Course> query = em.createQuery(cq.select(root));
+
+        List<Course> resultList = query.getResultList();
+        assertEquals(1, resultList.size());
+    }
+
+    @Test
+    @Transactional
+    void criteriaIsEmpty() {
+        // Select c from Course c where c.students is empty"
+
+        // 1. Use Criteria Builder to create a Criteria Query returning the expected result object
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+        // 2. Define roots for tables which are involved in the query
+        Root<Course> root = cq.from(Course.class);
+
+        // 3. Define Predicates etc using CriteriaBuilder
+        Predicate studentsIsEmpty = cb.isEmpty(root.get("students"));
+
+        // 4. Add Predicates etc to Criteria Query
+        cq.where(studentsIsEmpty);
 
         // 5. Build the TypedQuery using the entity manager and criteria query
         TypedQuery<Course> query = em.createQuery(cq.select(root));
